@@ -5,7 +5,8 @@ import { StaffModule } from './staff/staff.module';
 import { ManagerModule } from './manager/manager.module';
 import { TodoModule } from './todo/todo.module';
 
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm'; // TypeORM
+
 import { Manager } from './manager/manager.entity'; // Manager Entity
 
 @Module({
