@@ -30,4 +30,12 @@ export class ManagerService {
         
         return this.repo.save(manager);
     }
+
+    async removeManager(id: number) {
+        const manager = await this.repo.findOneBy({ id });
+
+        if(!manager) throw new NotFoundException("User not found!");
+
+        return this.repo.remove(manager);
+    }
 }

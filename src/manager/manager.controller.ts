@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/common';
 
 import { ManagerService } from './manager.service'; // Manager Service
-import { CreateManagerDto } from './dtos/create-manager.dto';
+import { CreateManagerDto } from './dtos/create-manager.dto'; // Create Manager DTO
+import { UpdateManagerDto } from './dtos/update-manager.dto'; // Update Manager DTO
 
 @Controller('manager')
 export class ManagerController {
@@ -20,5 +21,15 @@ export class ManagerController {
     @Get("/id")
     getSpecificManager(@Param("id") id: string) {
         return this.managerService.findOne(parseInt(id));
+    }
+
+    @Patch("/:id")
+    updateManagerRecord(@Param("id") id: string, @Body() body: UpdateManagerDto) {
+        return this.managerService.updateOne(parseInt(id), body);
+    }
+
+    @Delete("/:id")
+    removeManagerRecord(@Param("id") id: string) {
+        return this.managerService.removeManager(parseInt(id));
     }
 }
