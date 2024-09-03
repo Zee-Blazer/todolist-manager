@@ -8,9 +8,13 @@ import { Manager } from './manager.entity'; // Manager Entity
 export class ManagerService {
     constructor(@InjectRepository(Manager) private repo: Repository<Manager>) {}
 
-    create(username: string, password: string, id: number, role: string) {
-        const manager = this.repo.create({ username, password, id, role });
+    create(username: string, password: string, role: string) {
+        const manager = this.repo.create({ username, password, role });
 
         return this.repo.save(manager);
+    }
+
+    find() {
+        return this.repo.find();
     }
 }
