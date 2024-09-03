@@ -21,4 +21,13 @@ export class ManagerService {
     findOne(id: number) {
         return this.repo.findOneBy({ id });
     }
+
+    async updateOne(id: number, attrs: Partial<Manager>) {
+        const manager = await this.repo.findOneBy({ id });
+
+        if(!manager) throw new NotFoundException(`Manager not found!`);
+        Object.assign(manager, attrs);
+        
+        return this.repo.save(manager);
+    }
 }
