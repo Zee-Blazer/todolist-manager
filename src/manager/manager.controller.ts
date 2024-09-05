@@ -18,7 +18,7 @@ export class ManagerController {
         return this.managerService.find();
     }
 
-    @Get("/id")
+    @Get("/:id")
     getSpecificManager(@Param("id") id: string) {
         return this.managerService.findOne(parseInt(id));
     }
