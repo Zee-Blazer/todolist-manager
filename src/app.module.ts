@@ -8,12 +8,13 @@ import { TodoModule } from './todo/todo.module';
 import { TypeOrmModule } from '@nestjs/typeorm'; // TypeORM
 
 import { Manager } from './manager/manager.entity'; // Manager Entity
+import { Staff } from './staff/staff.entity'; // Staff Entity
 
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'sqlite',
     database: "database.sqlite",
-    entities: [Manager],
+    entities: [ Manager, Staff ],
     synchronize: true
   }), StaffModule, ManagerModule, TodoModule],
   controllers: [AppController],
