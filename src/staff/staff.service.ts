@@ -25,4 +25,19 @@ export class StaffService {
 
         return staff;
     }
+
+    async editOne(id: number, attrs: Partial<Staff>) {
+        const staff = await this.repo.findOneBy({ id });
+
+        if(!staff) throw new NotFoundException("User not found!");
+        Object.assign(staff, attrs);
+
+        return this.repo.save(staff);
+    }
+
+    async deleteOne(id: number) {
+        const user = await this.repo.findOneBy({ id });
+        
+        return this.repo.remove(user);
+    }
 }
