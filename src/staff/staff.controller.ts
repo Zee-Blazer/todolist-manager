@@ -27,4 +27,9 @@ export class StaffController {
     editStaff(@Param("id") id: string, @Body() body: UpdateStaffDto) {
         return this.staffService.editOne(parseInt(id), body);
     }
+
+    @Delete("/:id")
+    deleteStaff(@Param("id") id: string) {
+        return this.staffService.deleteOne(parseInt(id));
+    }
 }
