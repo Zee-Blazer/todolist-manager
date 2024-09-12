@@ -2,6 +2,7 @@ import { Controller, Get, Post, Patch, Delete, Body, Param } from '@nestjs/commo
 
 import { StaffService } from './staff.service'; // Staff entity
 import { CreateStaffDto } from './dtos/create-staff.dto';
+import { UpdateStaffDto } from './dtos/update-staff.dto';
 
 @Controller('staff')
 export class StaffController {
@@ -20,5 +21,10 @@ export class StaffController {
     @Get("/:id")
     specificStaff(@Param('id') id: string) {
         return this.staffService.findOne(parseInt(id));
+    }
+
+    @Patch("/:id")
+    editStaff(@Param("id") id: string, @Body() body: UpdateStaffDto) {
+        return this.staffService.editOne(parseInt(id), body);
     }
 }
