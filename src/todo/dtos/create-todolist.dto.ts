@@ -8,5 +8,8 @@ export class CreateTodoListDto {
     ownerId: string;
 
     @IsBoolean()
-    private: boolean;
+    personalized: boolean;
+
+    @IsString()
+    assignedBy: string;
 }

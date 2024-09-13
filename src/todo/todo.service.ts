@@ -15,21 +15,32 @@ export class TodoService {
         return this.repo.save(todolist);
     }
 
+    // Created the service for the manager to assign task to his subordinate
     createMangedTodo(item: string, personalized: boolean, ownerId: number, assignedBy: string) {
         const todolist = this.repo.create({ item, personalized, ownerId, assignedBy });
 
         return this.repo.save(todolist);
     }
 
-    readAllPersonalized() {
-        return this.repo.findOneBy({ personalized: true });
+    readSpecificTodo(id: number) {
+        return this.repo.findOneBy({ id });
     }
 
+    // These will open all personalized blogs
+    readAllPersonalized() {
+        return this.repo.findBy({ personalized: true });
+    }
+
+    readSpecificPersonalized(ownerId: number) {
+        return this.repo.findBy({ ownerId });
+    }
+
+    // These will display all the managers messages for every user and manager
     readMangerAssignedTask() {
-        return this.repo.findOneBy({ personalized: false });
+        return this.repo.findBy({ personalized: false });
     }
 
     readSpecificMangerAssignedTask(manager: string) {
-        return this.repo.findOneBy({ assignedBy: manager });
+        return this.repo.findBy({ assignedBy: manager });
     }
 }
