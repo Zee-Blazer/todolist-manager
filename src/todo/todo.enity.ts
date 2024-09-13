@@ -5,9 +5,15 @@ export class TodoList {
     @PrimaryGeneratedColumn()
     id: number;
     
-    @Column()
-    private: string;
+    @Column({ default: true })
+    personalized: boolean;
 
     @Column()
     ownerId: number;
+
+    @Column()
+    item: string;
+
+    @Column({ default: "self" })
+    assignedBy: string;
 }
