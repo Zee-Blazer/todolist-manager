@@ -8,11 +8,28 @@ import { TodoList } from './todo.enity';
 export class TodoService {
     constructor(@InjectRepository(TodoList) private repo: Repository<TodoList>) {}
 
+    // 
     createPersonalTodo(item: string, ownerId: number) {
         const todolist = this.repo.create({ item, ownerId });
 
         return this.repo.save(todolist);
     }
 
-    createMangedTodo(item: string, personalized: boolean, ownerId: number, assignedBy: string) {}
+    createMangedTodo(item: string, personalized: boolean, ownerId: number, assignedBy: string) {
+        const todolist = this.repo.create({ item, personalized, ownerId, assignedBy });
+
+        return this.repo.save(todolist);
+    }
+
+    readAllPersonalized() {
+        return this.repo.findOneBy({ personalized: true });
+    }
+
+    readMangerAssignedTask() {
+        return this.repo.findOneBy({ personalized: false });
+    }
+
+    readSpecificMangerAssignedTask(manager: string) {
+        return this.repo.findOneBy({ assignedBy: manager });
+    }
 }
