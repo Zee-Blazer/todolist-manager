@@ -4,9 +4,12 @@ import { ManagerService } from './manager.service'; // Manager Service
 import { CreateManagerDto } from './dtos/create-manager.dto'; // Create Manager DTO
 import { UpdateManagerDto } from './dtos/update-manager.dto'; // Update Manager DTO
 
+import { TodoService } from 'src/todo/todo.service';
+import { AssignDto } from './dtos/assign.dto';
+
 @Controller('manager')
 export class ManagerController {
-    constructor (private managerService: ManagerService) {}
+    constructor (private managerService: ManagerService, private todoService: TodoService) {}
 
     @Post('/auth')
     createManager(@Body() body: CreateManagerDto) {
@@ -16,6 +19,11 @@ export class ManagerController {
     @Get()
     getAllManagers(){
         return this.managerService.find();
+    }
+
+    @Post()
+    assignNewTask(@Body() body: AssignDto) {
+        return
     }
 
     @Get("/:id")
