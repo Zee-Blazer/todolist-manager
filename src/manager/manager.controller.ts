@@ -21,9 +21,14 @@ export class ManagerController {
         return this.managerService.find();
     }
 
-    @Post()
+    @Post("/assign-task")
     assignNewTask(@Body() body: AssignDto) {
-        return
+        return this.todoService.createMangedTodo(
+                body.item, 
+                body.personalized, 
+                body.ownerId, 
+                body.assignedBy
+            );
     }
 
     @Get("/:id")
