@@ -27,10 +27,6 @@ export class TodoService {
         return this.repo.findOneBy({ id });
     }
 
-    readSpecificUserTodo(ownerId: number, id: number) {
-        return this.repo.findOneBy({ id, ownerId });
-    }
-
     // These will open all personalized blogs
     readAllPersonalized() {
         return this.repo.findBy({ personalized: true });
@@ -45,6 +41,7 @@ export class TodoService {
         return this.repo.findBy({ personalized: false });
     }
 
+    // Read a specific task assigned by a manager
     readSpecificMangerAssignedTask(manager: string) {
         return this.repo.findBy({ assignedBy: manager });
     }
