@@ -22,8 +22,13 @@ export class TodoService {
         return this.repo.save(todolist);
     }
 
+    // Read all todo list associated with a singler person
     readSpecificTodo(id: number) {
         return this.repo.findOneBy({ id });
+    }
+
+    readSpecificUserTodo(ownerId: number, id: number) {
+        return this.repo.findOneBy({ id, ownerId });
     }
 
     // These will open all personalized blogs
